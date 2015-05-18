@@ -20,17 +20,19 @@ public class AsteroidController: MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float step = speed * Time.deltaTime;
-		transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+		if (GameController.gameOver == false) {
+			float step = speed * Time.deltaTime;
+			transform.position = Vector3.MoveTowards (transform.position, target.position, step);
 
-		RaycastHit hit;
-		isLookedAt = GetComponent<CapsuleCollider>().Raycast(head.Gaze, out hit, Mathf.Infinity);
-		
-		if (Cardboard.SDK.CardboardTriggered && isLookedAt) {
-			Instantiate (explosion, hit.transform.position, hit.transform.rotation);
-			ScoreManager.score += 5;
-			Destroy (gameObject);
-			crosshair.material.color = Color.white;
+			RaycastHit hit;
+			isLookedAt = GetComponent<CapsuleCollider> ().Raycast (head.Gaze, out hit, Mathf.Infinity);
+			
+			if (Cardboard.SDK.CardboardTriggered && isLookedAt) {
+				Instantiate (explosion, hit.transform.position, hit.transform.rotation);
+				ScoreManager.score += 5;
+				Destroy (gameObject);
+				crosshair.material.color = Color.white;
+			}
 		}
 	}
 }
