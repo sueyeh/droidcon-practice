@@ -35,9 +35,10 @@ public class GameController : MonoBehaviour {
 	void SpawnAsteroid() {
 		// Select a random point in a sphere
 		Vector3 randomPosition = Random.onUnitSphere;
+		Vector3 scaledPosition = randomPosition * 20f;
 
 		// Move the point 20 units away and make sure it is in front of the camera
-		Vector3 spawnPosition = new Vector3 (randomPosition.x * 20f, randomPosition.y * 20f, Mathf.Abs (randomPosition.z * 20f));
+		Vector3 spawnPosition = new Vector3 (scaledPosition.x, scaledPosition.y, Mathf.Abs (scaledPosition.z));
 
 		// Corresponds to "no rotation"
 		Quaternion spawnRotation = Quaternion.identity;
