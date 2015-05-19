@@ -3,12 +3,12 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class CrosshairController: MonoBehaviour {
-	public bool isLookedAt;
+	public bool isLookingAt;
 	
 	void Update() {
-		isLookedAt = Physics.Raycast (Camera.main.transform.position, Camera.main.transform.forward, Mathf.Infinity);
+		isLookingAt = Physics.Raycast (Camera.main.transform.position, Camera.main.transform.forward, Mathf.Infinity);
 		
-		if (isLookedAt) {
+		if (isLookingAt) {
 			GetComponent<Image> ().color = Color.red;
 		} else {
 			GetComponent<Image> ().color = Color.white;
